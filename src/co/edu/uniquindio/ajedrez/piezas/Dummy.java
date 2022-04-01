@@ -1,5 +1,6 @@
 package co.edu.uniquindio.ajedrez.piezas;
 
+import co.edu.uniquindio.ajedrez.Casilla;
 import co.edu.uniquindio.ajedrez.util.Coordinate;
 
 import java.util.ArrayList;
@@ -17,12 +18,19 @@ public class Dummy extends Pieza implements IMover{
 
     }
 
-    public static ArrayList<Coordinate> movidas(String current) {
+    public static ArrayList<Coordinate> movidas(Pieza pieza) {
         ArrayList<Coordinate> coordinates = new ArrayList<>();
-        Coordinate coordinate = Coordinate.parseCoordinate(current);
-        if (coordinate != null && coordinate.getRow() < 6) {
-            coordinate.setRow(coordinate.getRow() + 1);
-            coordinates.add(coordinate);
+        Coordinate coordinate = pieza.getCasilla().getCoordinate();
+        if (coordinate != null) {
+            if (pieza.getColor().equals(Color.NEGRAS) && coordinate.getRow() < 7) {
+                coordinate.setRow(coordinate.getRow() + 1);
+                coordinates.add(coordinate);
+            }
+            else if (pieza.getColor().equals(Color.BLANCAS) && coordinate.getRow() > 0) {
+                coordinate.setRow(coordinate.getRow() - 1);
+                coordinates.add(coordinate);
+            }
+
         }
         return coordinates;
     }
@@ -30,10 +38,10 @@ public class Dummy extends Pieza implements IMover{
     public String toString() {
         // https://es.wikipedia.org/wiki/S%C3%ADmbolos_de_ajedrez_en_Unicode
         if (this.getColor().equals(Color.BLANCAS)) {
-            return "♙";
+            return "\u2659";
         }
         else {
-            return "♟";
+            return "\u265F";
         }
     }
 }

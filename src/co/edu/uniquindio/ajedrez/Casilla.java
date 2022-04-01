@@ -1,16 +1,19 @@
 package co.edu.uniquindio.ajedrez;
 
 import co.edu.uniquindio.ajedrez.piezas.Pieza;
+import co.edu.uniquindio.ajedrez.util.Coordinate;
 
 public class Casilla {
 
     private Pieza pieza;
-    private String coordinates;
+    private Coordinate coordinate;
 
-    public Casilla() {
+    public Casilla(Coordinate coordinate) {
+        this.coordinate = coordinate;
     }
 
-    public Casilla(Pieza pieza) {
+    public Casilla(Coordinate coordinate, Pieza pieza) {
+        this.coordinate = coordinate;
         this.pieza = pieza;
     }
 
@@ -22,18 +25,23 @@ public class Casilla {
         this.pieza = pieza;
     }
 
-    public String getCoordinates() {
-        return coordinates;
+    public Coordinate getCoordinate() {
+        return coordinate;
     }
 
-    public void setCoordinates(String coordinates) {
-        this.coordinates = coordinates;
+    public void setCoordinate(Coordinate coordinate) {
+        this.coordinate = coordinate;
     }
 
     public String toString() {
         if (this.pieza != null) {
             return this.pieza.toString();
         }
-        return " ";
+        else if (coordinate != null) {
+            if ((coordinate.getRow() + coordinate.getCol()) % 2 == 0) {
+                return "\u2593";
+            }
+        }
+        return "\u2591";
     }
 }

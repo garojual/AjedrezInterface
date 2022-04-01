@@ -1,6 +1,7 @@
 package co.edu.uniquindio.ajedrez;
 
 import co.edu.uniquindio.ajedrez.piezas.*;
+import co.edu.uniquindio.ajedrez.util.Coordinate;
 
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ public class Tablero {
     public Tablero() {
         for (int row = 0; row < casillas.length; row++) {
             for (int columm = 0; columm < casillas[row].length; columm++) {
-                casillas[row][columm] =  new Casilla();
+                casillas[row][columm] =  new Casilla(new Coordinate(row, columm));
             }
         }
         this.iniciar();
@@ -34,7 +35,7 @@ public class Tablero {
             }
 
             for (int columm = 0; columm < casillas[row].length; columm++) {
-                Casilla casilla = new Casilla();
+                Casilla casilla = new Casilla(new Coordinate(row, columm));
                 // Definimos peones.
                 if (row == 1 || row == 6) {
                     casilla.setPieza(new Dummy(color));
@@ -65,7 +66,14 @@ public class Tablero {
                     casilla.setPieza(new Rey(color));
                 }
 
-                casilla.setCoordinates("" + cols[columm] + rows[row]);
+                casilla.setCoordinate(new Coordinate(row, columm));
+
+                if (!casilla.getPieza().equals(null)) {
+                    // Generamos una relacion inversa en la pieza, que nos permite desde la pieza conocer en que casilla
+                    // esta.
+                    casilla.getPieza().setCasilla(casilla);
+                }
+
                 casillas[row][columm] =  casilla;
             }
         }

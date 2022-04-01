@@ -17,17 +17,17 @@ public class Peon extends Pieza implements IMover{
 
     }
 
-    public static ArrayList<Coordinate> movidas(String current) {
+    public static ArrayList<Coordinate> movidas(Pieza pieza) {
         return new ArrayList<>();
     }
 
     public String toString() {
         // https://es.wikipedia.org/wiki/S%C3%ADmbolos_de_ajedrez_en_Unicode
         if (this.getColor().equals(Color.BLANCAS)) {
-            return "♙";
+            return "\u2659";
         }
         else {
-            return "♟";
+            return "\u265F";
         }
     }
 
