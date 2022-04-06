@@ -1,5 +1,6 @@
 package co.edu.uniquindio.ajedrez.piezas;
 
+import co.edu.uniquindio.ajedrez.Casilla;
 import co.edu.uniquindio.ajedrez.util.Coordinate;
 
 import java.util.ArrayList;
@@ -13,12 +14,26 @@ public class Torre extends Pieza implements IMover{
     }
 
     @Override
-    public void mover() {
+    public void mover(Casilla coordinate) {
 
     }
 
-    public static ArrayList<Coordinate> movidas(String current) {
-        return new ArrayList<>();
+    public ArrayList<Coordinate> movidas(Pieza pieza) {
+        ArrayList<Coordinate> coordinates = new ArrayList<>();
+        Coordinate coordinate = pieza.getCasilla().getCoordinate();
+        if (coordinate != null) {
+            for (int i = 0; i < 8; i++) {
+                Coordinate coordenada = new Coordinate (coordinate.getRow(), i);
+                if (i != coordinate.getRow()) {
+                    coordinates.add(coordenada);
+                }
+                coordenada = new Coordinate (i, coordinate.getCol());
+                if (i != coordinate.getCol()) {
+                    coordinates.add(coordenada);
+                }
+            }
+        }
+        return coordinates;
     }
 
     public String toString() {

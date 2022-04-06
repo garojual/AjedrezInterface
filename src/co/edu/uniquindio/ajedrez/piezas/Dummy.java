@@ -14,11 +14,11 @@ public class Dummy extends Pieza implements IMover{
     }
 
     @Override
-    public void mover() {
+    public void mover(Casilla coordinate) {
 
     }
 
-    public static ArrayList<Coordinate> movidas(Pieza pieza) {
+    public ArrayList<Coordinate> movidas(Pieza pieza) {
         ArrayList<Coordinate> coordinates = new ArrayList<>();
         Coordinate coordinate = pieza.getCasilla().getCoordinate();
         if (coordinate != null) {

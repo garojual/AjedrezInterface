@@ -38,7 +38,7 @@ public class Tablero {
                 Casilla casilla = new Casilla(new Coordinate(row, columm));
                 // Definimos peones.
                 if (row == 1 || row == 6) {
-                    casilla.setPieza(new Dummy(color));
+                    casilla.setPieza(new Peon(color));
                 }
 
                 // Definimos torres.
@@ -67,6 +67,8 @@ public class Tablero {
                 }
 
                 casilla.setCoordinate(new Coordinate(row, columm));
+                // Le indicamos a la casilla el tablero donde esta ubicado.
+                casilla.setTablero(this);
 
                 if (!casilla.getPieza().equals(null)) {
                     // Generamos una relacion inversa en la pieza, que nos permite desde la pieza conocer en que casilla
@@ -83,7 +85,7 @@ public class Tablero {
         ArrayList<Casilla> casillas = new ArrayList<>();
         if (casilla.getPieza() != null && casilla.getPieza() instanceof IMover) {
             IMover pieza = (IMover) casilla.getPieza();
-            pieza.mover();
+            pieza.mover(casilla);
         }
         return casillas;
     }

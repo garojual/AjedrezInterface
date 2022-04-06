@@ -1,10 +1,8 @@
 package co.edu.uniquindio.ajedrez.piezas;
 
-import co.edu.uniquindio.ajedrez.util.Coordinate;
-
-import java.util.ArrayList;
+import co.edu.uniquindio.ajedrez.Casilla;
 
 public interface IMover {
 
-    void mover();
+    void mover(Casilla coordinate);
 }

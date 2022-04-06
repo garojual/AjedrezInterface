@@ -1,5 +1,6 @@
 package co.edu.uniquindio.ajedrez.piezas;
 
+import co.edu.uniquindio.ajedrez.Casilla;
 import co.edu.uniquindio.ajedrez.util.Coordinate;
 
 import java.util.ArrayList;
@@ -13,12 +14,64 @@ public class Peon extends Pieza implements IMover{
     }
 
     @Override
-    public void mover() {
+    public void mover(Casilla coordinate) {
 
     }
 
-    public static ArrayList<Coordinate> movidas(Pieza pieza) {
-        return new ArrayList<>();
+    public ArrayList<Coordinate> movidas(Pieza pieza) {
+        ArrayList<Coordinate> coordinates = new ArrayList<>();
+        Coordinate coordinate = pieza.getCasilla().getCoordinate();
+        boolean isFirstMove = true;
+
+        if (pieza.getColor().equals(Color.NEGRAS) && coordinate != null) {
+
+            if ( coordinate.getRow() < 7 ) {
+                Coordinate coord1 = new Coordinate(coordinate.getRow() + 1, coordinate.getCol());
+                coordinates.add(coord1);
+            }
+
+            if(isFirstMove &&  coordinate.getRow() < 7){
+                isFirstMove = false;
+                Coordinate coord2 = new Coordinate(coordinate.getRow() + 2, coordinate.getCol());
+                coordinates.add(coord2);
+            }
+
+            if(coordinate.getCol() < 7){
+                Coordinate coord3 = new Coordinate(coordinate.getRow() + 1, coordinate.getCol() + 1);
+                coordinates.add(coord3);
+            }
+
+            if(coordinate.getCol() > 0){
+                Coordinate coord4 = new Coordinate(coordinate.getRow() + 1, coordinate.getCol() - 1);
+                coordinates.add(coord4);
+            }
+        }
+
+        else if (pieza.getColor().equals(Color.BLANCAS) && coordinate.getRow() > 0) {
+
+            if ( coordinate.getRow() <= 7) {
+                Coordinate coord1 = new Coordinate(coordinate.getRow() - 1, coordinate.getCol());
+                coordinates.add(coord1);
+            }
+
+            if(isFirstMove &&  coordinate.getRow() < 7){
+                isFirstMove = false;
+                Coordinate coord2 = new Coordinate(coordinate.getRow() - 2, coordinate.getCol());
+                coordinates.add(coord2);
+            }
+
+            if(coordinate.getCol() > 0){
+                Coordinate coord3 = new Coordinate(coordinate.getRow() - 1, coordinate.getCol() - 1);
+                coordinates.add(coord3);
+            }
+
+            if(coordinate.getCol() < 7){
+                Coordinate coord4 = new Coordinate(coordinate.getRow() - 1, coordinate.getCol() + 1);
+                coordinates.add(coord4);
+            }
+        }
+
+        return coordinates;
     }
 
     public String toString() {

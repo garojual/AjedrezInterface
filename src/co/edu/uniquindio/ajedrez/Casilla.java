@@ -7,6 +7,7 @@ public class Casilla {
 
     private Pieza pieza;
     private Coordinate coordinate;
+    private Tablero tablero;
 
     public Casilla(Coordinate coordinate) {
         this.coordinate = coordinate;
@@ -31,6 +32,14 @@ public class Casilla {
 
     public void setCoordinate(Coordinate coordinate) {
         this.coordinate = coordinate;
+    }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
     }
 
     public String toString() {

@@ -5,7 +5,7 @@ import co.edu.uniquindio.ajedrez.util.Coordinate;
 
 import java.util.ArrayList;
 
-public class Pieza implements IPieza {
+public abstract class Pieza implements IPieza {
 
     private TipoPieza tipo;
     private Color color;
@@ -38,7 +38,5 @@ public class Pieza implements IPieza {
         this.casilla = casilla;
     }
 
-    static ArrayList<Coordinate> movidas(Pieza pieza) {
-        return new ArrayList<>();
-    }
+    public abstract ArrayList<Coordinate> movidas(Pieza pieza);
 }
