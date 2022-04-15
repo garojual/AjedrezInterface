@@ -16,23 +16,79 @@ public class Rey extends Pieza implements IMover{
     public ArrayList<Coordinate> movidas(Pieza pieza) {
         ArrayList<Coordinate> coordinates = new ArrayList<>();
         Coordinate coordinate = pieza.getCasilla().getCoordinate();
-        if (coordinate != null) {
-            // Usamos el mismo enfoque del caballo para las movidas basicas del rey.
-            double radians = 0.0;
-            for (int i = 0; i < 8; i++) {
-                int rowPos = coordinate.getRow() + (int) Math.round(Math.sin(radians));
-                int colPos = coordinate.getCol() + (int) Math.round(Math.cos(radians));
-                radians += Math.toRadians(45.0);
+        if(coordinate != null){
+            int verticalCoordinate = coordinate.getRow();
+            int horizontalCoordinate = coordinate.getCol();
 
-                if (rowPos >= 0 && rowPos <= 7 && colPos >= 0 && colPos <= 7) {
-                    coordinates.add(new Coordinate(rowPos, colPos));
-                    // System.out.println("radians:" + radians + "row: " + rowPos + " col: " + colPos);
-                }
-            }
-
-            // @todo Falta agregar modias de enroque.
+            vertical(coordinate, coordinates, verticalCoordinate, horizontalCoordinate);
+            horizontal(coordinate, coordinates, verticalCoordinate, horizontalCoordinate);
+            diagonalSuperior(coordinate, coordinates, verticalCoordinate, horizontalCoordinate);
+            diagonalInferior(coordinate, coordinates, verticalCoordinate, horizontalCoordinate);
         }
+
         return coordinates;
+    }
+
+    private void vertical(Coordinate coordinate, ArrayList<Coordinate> coordinates, int vertical, int horizontal){
+
+        coordinate.setCol(horizontal);
+
+        for(int i=1; vertical+i <= 1; i++){
+            coordinate.setRow(vertical + i);
+            coordinates.add(new Coordinate(coordinate.getRow(), coordinate.getCol()));
+        }
+
+        for(int i=1; vertical-i >= 1; i++){
+            coordinate.setRow(vertical - i);
+            coordinates.add(new Coordinate(coordinate.getRow(), coordinate.getCol()));
+        }
+    }
+
+    private void horizontal(Coordinate coordinate, ArrayList<Coordinate> coordinates, int vertical, int horizontal){
+
+        coordinate.setRow(vertical);
+
+        for(int i=1; horizontal+i <= 1; i++){
+            coordinate.setCol(horizontal+i);
+            coordinates.add(new Coordinate(coordinate.getRow(), coordinate.getCol()));
+        }
+        for(int i=1; horizontal-i >= 1; i++){
+            coordinate.setCol(horizontal-i);
+            coordinates.add(new Coordinate(coordinate.getRow(), coordinate.getCol()));
+        }
+    }
+
+    private void diagonalSuperior(Coordinate coordinate, ArrayList<Coordinate> coordinates, int vertical, int horizontal) {
+
+
+        for (int i = 1; horizontal + i <= 1 && vertical + i <= 1; i++) {
+            coordinate.setCol(horizontal + i);
+            coordinate.setRow(vertical + i);
+            coordinates.add(new Coordinate(coordinate.getRow(), coordinate.getCol()));
+
+        }
+
+        for (int i = 1; horizontal - i >= 0 && vertical + i <= 1; i++) {
+            coordinate.setCol(horizontal - i);
+            coordinate.setRow(vertical + i);
+            coordinates.add(new Coordinate(coordinate.getRow(), coordinate.getCol()));
+        }
+
+    }
+
+    private void diagonalInferior(Coordinate coordinate, ArrayList<Coordinate> coordinates, int vertical, int horizontal){
+
+        for(int i=1; horizontal-i >= 1 && vertical-i >= 1; i++){
+            coordinate.setCol(horizontal-i);
+            coordinate.setRow(vertical-i);
+            coordinates.add(new Coordinate(coordinate.getRow(), coordinate.getCol()));
+        }
+
+        for(int i=1; horizontal+i <= 1 && vertical-i >= 0; i++){
+            coordinate.setCol(horizontal+i);
+            coordinate.setRow(vertical-i);
+            coordinates.add(new Coordinate(coordinate.getRow(), coordinate.getCol()));
+        }
     }
 
     public String toString() {

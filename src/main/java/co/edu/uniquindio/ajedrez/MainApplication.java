@@ -10,7 +10,7 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/co/edu/uniquindio/ajedrez/view/hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("/co/edu/uniquindio/ajedrez/view/board-view.fxml"));
         try {
             Scene scene = new Scene(fxmlLoader.load(), 500, 500);
             stage.setTitle("Ajedrez!");
