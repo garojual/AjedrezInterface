@@ -5,7 +5,7 @@ import co.edu.uniquindio.ajedrez.logic.util.Coordinate;
 
 import java.util.ArrayList;
 
-public abstract class Pieza implements IPieza {
+public abstract class Pieza implements IPieza, IMover {
 
     private TipoPieza tipo;
     private Color color;

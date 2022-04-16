@@ -5,6 +5,7 @@ import co.edu.uniquindio.ajedrez.logic.Casilla;
 import co.edu.uniquindio.ajedrez.logic.piezas.Color;
 import co.edu.uniquindio.ajedrez.logic.piezas.Peon;
 import co.edu.uniquindio.ajedrez.logic.piezas.Pieza;
+import co.edu.uniquindio.ajedrez.logic.piezas.TipoPieza;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,35 +23,48 @@ public class MainApplication extends Application {
             stage.setScene(scene);
             stage.show();
         } catch (IOException ioe) {
-            ioe.printStackTrace();
+            ioe.printStackTrace();//
         }
-
     }
 
     public static void main(String[] args) {
+
+        //Pruebas, desplegar solo las posiciones validas
+
         Tablero tablero = new Tablero();
         System.out.println(tablero);
         Casilla casilla = tablero.getCasilla(1, 0);
-
+/*
+        //Pieza contraria
         Casilla casilla2 = tablero.getCasilla(6, 0);
         Pieza piezaAux = casilla2.getPieza();
         casilla2.setPieza(null);
         casilla2 = tablero.getCasilla(2, 1);
         casilla2.setPieza(piezaAux);
-        piezaAux.setCasilla(casilla2);
+        piezaAux.setCasilla(casilla2);*/
 
         casilla.setPieza(casilla.getPieza());
 
         Pieza pieza = casilla.getPieza();
         pieza.setCasilla(casilla);
 
-        //pieza.mover(casilla); quitado el metodo mover agregado a piezas, por eso no funciona
+        //Para poder probar la función, se tuvo que implementar la interfaz IMover en la clase Pieza
+        pieza.mover(casilla);
+/*
 
-
-        launch();
-
+        //Peon al final del tablero
+        Tablero tablero = new Tablero();
+        System.out.println(tablero);
+        Casilla casilla = tablero.getCasilla(1, 0);
+        Pieza pieza = casilla.getPieza();
+        casilla.setPieza(null);
+        casilla = tablero.getCasilla(7,0);
         casilla.setPieza(pieza);
         pieza.setCasilla(casilla);
+
+        pieza.mover(casilla);*/
+
+        launch();
 
 
 
