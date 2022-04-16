@@ -35,7 +35,7 @@ public class MainApplication extends Application {
         System.out.println(tablero);
         Casilla casilla = tablero.getCasilla(1, 0);
 /*
-        //Pieza contraria
+        //Pieza contraria en la posicion b6
         Casilla casilla2 = tablero.getCasilla(6, 0);
         Pieza piezaAux = casilla2.getPieza();
         casilla2.setPieza(null);
