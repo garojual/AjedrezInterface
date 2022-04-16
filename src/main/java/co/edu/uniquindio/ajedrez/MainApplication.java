@@ -1,5 +1,10 @@
 package co.edu.uniquindio.ajedrez;
 
+import co.edu.uniquindio.ajedrez.logic.Tablero;
+import co.edu.uniquindio.ajedrez.logic.Casilla;
+import co.edu.uniquindio.ajedrez.logic.piezas.Color;
+import co.edu.uniquindio.ajedrez.logic.piezas.Peon;
+import co.edu.uniquindio.ajedrez.logic.piezas.Pieza;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,12 +28,33 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
+        Tablero tablero = new Tablero();
+        System.out.println(tablero);
+        Casilla casilla = tablero.getCasilla(1, 0);
+
+        Casilla casilla2 = tablero.getCasilla(6, 0);
+        Pieza piezaAux = casilla2.getPieza();
+        casilla2.setPieza(null);
+        casilla2 = tablero.getCasilla(2, 1);
+        casilla2.setPieza(piezaAux);
+        piezaAux.setCasilla(casilla2);
+
+        casilla.setPieza(casilla.getPieza());
+
+        Pieza pieza = casilla.getPieza();
+        pieza.setCasilla(casilla);
+
+        //pieza.mover(casilla); quitado el metodo mover agregado a piezas, por eso no funciona
+
+
         launch();
 
-        /*Tablero tablero = new Tablero();
-        System.out.println(tablero);*/
+        casilla.setPieza(pieza);
+        pieza.setCasilla(casilla);
 
-        /*// Validamos los posible movimientos de la pieza dummy negra
+
+
+        /* Validamos los posible movimientos de la pieza dummy negra
         Casilla casilla = tablero.getCasilla(1, 0);
         if (casilla != null) {
             System.out.println(casilla.getCoordinate());

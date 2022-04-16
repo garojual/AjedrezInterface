@@ -25,7 +25,7 @@ public class BoardController {
     public void initialize() {
         tablero = new Tablero();
         for (Node node: gridPane.getChildren()) {
-//            if (node.getClass().equals(Button.class)) {
+//          if (node.getClass().equals(Button.class)) {
             if (node instanceof Button) {
                 Button button = ((Button) node);
                 button.setText(" ");
@@ -36,7 +36,7 @@ public class BoardController {
                     row = 0;
                 }
 
-/*                button.prefHeight(40.0);
+                /*button.prefHeight(40.0);
                 button.prefWidth(40.0);
                 button.minWidth(40.0);
                 button.minHeight(40.0);*/

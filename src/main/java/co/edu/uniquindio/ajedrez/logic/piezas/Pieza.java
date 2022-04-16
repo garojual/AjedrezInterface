@@ -39,4 +39,5 @@ public abstract class Pieza implements IPieza {
     }
 
     public abstract ArrayList<Coordinate> movidas(Pieza pieza);
+
 }
